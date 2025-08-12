@@ -1,0 +1,73 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classBackgroundColor #FDFDFD
+skinparam shadowing false
+hide stereotypes
+
+class FeriaEmpresarial {
+    - empresas : List<Empresa>
+    - stands : List<Stand>
+    - visitantes : List<Visitante>
+    - comentarios : List<Comentario>
+    + registrarEmpresa(empresa : Empresa)
+    + editarEmpresa(nombre : String, nuevosDatos : Empresa)
+    + eliminarEmpresa(nombre : String)
+    + registrarStand(stand : Stand)
+    + asignarStand(numeroUnico : int, empresa : Empresa)
+    + listarStandsLibres() : void
+    + listarStandsOcupados() : void
+    + registrarVisitante(visitante : Visitante)
+    + editarVisitante(id : String, nuevosDatos : Visitante)
+    + eliminarVisitante(id : String)
+    + registrarVisita(visitante : Visitante, stand : Stand)
+    + registrarComentario(comentario : Comentario)
+    + generarReporteEmpresas() : void
+    + generarReporteVisitantes() : void
+    + generarReporteCalificaciones() : void
+}
+
+class Empresa {
+    - nombre : String
+    - sector : String
+    - correoElectronico : String
+}
+
+enum TamanoStand {
+    PEQUEÑO
+    MEDIANO
+    GRANDE
+}
+
+class Stand {
+    - numeroUnico : int
+    - ubicacion : String
+    - tamaño : TamanoStand
+    - empresaAsignada : Empresa
+}
+
+class Visitante {
+    - nombre : String
+    - identificacion : String
+    - correoElectronico : String
+    - standsVisitados : List<Stand>
+}
+
+class Comentario {
+    - visitante : Visitante
+    - fecha : LocalDate
+    - calificacion : int
+    - comentario : String
+    - standRelacionado : Stand
+}
+
+FeriaEmpresarial "1" o-- "*" Empresa
+FeriaEmpresarial "1" o-- "*" Stand
+FeriaEmpresarial "1" o-- "*" Visitante
+FeriaEmpresarial "1" o-- "*" Comentario
+Stand "1" o-- "0..1" Empresa
+Visitante "*" -- "*" Stand
+Comentario "1" o-- "1" Visitante
+Comentario "1" o-- "1" Stand
+@enduml
