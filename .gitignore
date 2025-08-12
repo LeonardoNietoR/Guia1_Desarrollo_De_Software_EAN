@@ -1,0 +1,19 @@
+# Ignorar archivos compilados de Java
+*.class
+
+# Ignorar carpetas de compilación
+/bin/
+/build/
+/target/
+
+# Ignorar configuraciones del IDE
+*.iml
+*.ipr
+*.iws
+/.idea/
+/nbproject/private/
+/.vscode/
+
+# Ignorar archivos temporales
+*.log
+*.tmp

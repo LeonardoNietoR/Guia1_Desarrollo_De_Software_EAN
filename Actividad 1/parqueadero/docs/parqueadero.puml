@@ -1,0 +1,53 @@
+@startuml
+skinparam backgroundColor #FDFDFD
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #333333
+skinparam classArrowColor #333333
+skinparam classFontName Arial
+skinparam classFontSize 14
+skinparam shadowing true
+skinparam classBorderThickness 1
+skinparam arrowThickness 1
+skinparam roundCorner 10
+skinparam linetype ortho
+skinparam dpi 150
+
+skinparam classAttributeIconSize 0
+
+class Vehiculo {
+  - placa: String
+  - marca: String
+  - modelo: String
+  - horaEntrada: LocalDateTime
+  + calcularTiempoEstadia(): long
+  + getPlaca(): String
+  + tarifaPorMinuto(): double
+}
+
+class Automovil {
+  - tipoCombustible: String
+  + tarifaPorMinuto(): double
+}
+
+class Motocicleta {
+  - cilindraje: int
+  + tarifaPorMinuto(): double
+}
+
+class Camion {
+  - capacidadCarga: double
+  + tarifaPorMinuto(): double
+}
+
+class Parqueadero {
+  - vehiculos: Map<String, Vehiculo>
+  + registrarEntrada(v: Vehiculo): void
+  + registrarSalida(placa: String): double
+  + estadoParqueadero(): List<Vehiculo>
+}
+
+Vehiculo <|-- Automovil
+Vehiculo <|-- Motocicleta
+Vehiculo <|-- Camion
+Parqueadero o-- "0..*" Vehiculo
+@enduml
