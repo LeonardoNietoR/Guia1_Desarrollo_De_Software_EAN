@@ -17,3 +17,4 @@
 # Ignorar archivos temporales
 *.log
 *.tmp
+/Actividad 1/feria_empresarial/FeriaEmpresarial/target/

@@ -1,0 +1,50 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam classFontSize 14
+skinparam classFontStyle bold
+skinparam classBackgroundColor #FDFDFD
+skinparam shadowing false
+
+class FeriaEmpresarial {
+    - empresas : List<Empresa>
+    - stands : List<Stand>
+    - visitantes : List<Visitante>
+    - comentarios : List<Comentario>
+    + registrarEmpresa(empresa : Empresa)
+    + registrarStand(stand : Stand)
+    + registrarVisitante(visitante : Visitante)
+    + registrarComentario(comentario : Comentario)
+    + generarReporteEmpresas() : void
+    + generarReporteStands() : void
+}
+
+class Empresa {
+    - nombre : String
+    - sector : String
+    - correoElectronico : String
+}
+
+class Stand {
+    - numeroUnico : int
+    - ubicacion : String
+    - tamaño : double
+}
+
+class Visitante {
+    - nombre : String
+    - identificacion : String
+    - correoElectronico : String
+}
+
+class Comentario {
+    - nombreVisitante : String
+    - fecha : LocalDate
+    - calificacion : int
+    - comentario : String
+}
+
+FeriaEmpresarial "1" o-- "*" Empresa
+FeriaEmpresarial "1" o-- "*" Stand
+FeriaEmpresarial "1" o-- "*" Visitante
+FeriaEmpresarial "1" o-- "*" Comentario
+@enduml
